@@ -1,0 +1,32 @@
+@media (max-width: 530px) {
+    header {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        padding: 30px 30px 30px 30px;
+    }
+}
+
+@media (max-width: 390px) {
+    .content {
+        .h1-search {
+            h1 {
+                font-size: 21px;
+            }
+        }
+    }
+}
+
+@media (max-width: 340px) {
+    header {
+        .logo {
+            display: none;
+        }
+    }
+
+    .content {
+        padding: 20px 20px 10px 30px;
+    }
+}
