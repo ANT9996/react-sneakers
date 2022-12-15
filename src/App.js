@@ -11,10 +11,9 @@ function App() {
       <div className="line"></div>
       <div className="content">
         <Main />
-        <MyPurchases />
+        {/* <MyPurchases /> */}
       </div>
-      {/* cart = display: none (flex)*/}
-      <Cart />
+      {/* <Cart /> */}
     </div>
   );
 }

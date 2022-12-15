@@ -87,7 +87,7 @@ header {
 }
 
 .main {
-  display: none;
+  // display: none;
   padding: 30px 55px 30px 55px;
 
   .h1-search {
@@ -348,8 +348,8 @@ header {
 }
 
 .cart {
-  display: none;
-  // display: flex;
+  // display: none;
+  display: flex;
   justify-content: flex-end;
   position: fixed;
   bottom: 0;
