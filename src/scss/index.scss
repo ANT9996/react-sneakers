@@ -104,111 +104,33 @@ header {
       color: #000000;
     }
 
-    .search_field {
-      height: 45px;
-      max-width: 250px;
-      width: 250px;
+    .search {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #f3f3f3;
+      border-radius: 10px;
+      padding: 5px;
+      transition-duration: 0.4s;
+      &:hover {
+        border-color: #5c5c5c;
+        transition-duration: 0.4s;
+      }
+
+      img {
+        margin: 5px;
+        pointer-events: none;
+      }
 
       input {
-        height: 100%;
-        width: 100%;
-        border: 1px solid #f3f3f3;
-        border-radius: 10px;
-        outline: none;
-        transition-duration: 0.3s;
-        padding-left: 30px;
-      }
-
-      input:focus {
-        border: 1px solid #c9c9c9;
-        transition-duration: 0.3s;
-      }
-    }
-  }
-
-  .row {
-    margin-top: 55px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    .col {
-      margin: 15px;
-      width: 210px;
-      height: 210px;
-      padding: 10px 20px 10px 20px;
-
-      transition-duration: 0.3s;
-      padding-bottom: 30px;
-      background: #ffffff;
-      border: 1px solid #f3f3f3;
-      border-radius: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-
-      h4 {
-        margin-top: 10px;
-
+        border: 0;
         font-family: "Inter";
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
-        color: #000000;
-        text-align: center;
+        outline: none;
       }
-
-      .col__price {
-        display: flex;
-        width: 100%;
-        margin-top: 20px;
-        justify-content: space-between;
-
-        p {
-          font-family: "Inter";
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 13px;
-          text-transform: uppercase;
-          color: #bdbdbd;
-        }
-
-        h5 {
-          font-family: "Inter";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 14px;
-          line-height: 17px;
-          color: #000000;
-        }
-
-        button {
-          width: 32px;
-          height: 32px;
-          background: #ffffff;
-          border: 1px solid #f2f2f2;
-          border-radius: 8px;
-          background: url("../../public/img/plus.svg") no-repeat center center;
-          transition-duration: 0.3s;
-        }
-
-        button:hover {
-          border: 1px solid #d1d1d1;
-          transition-duration: 0.3s;
-        }
-      }
-    }
-
-    .col:hover {
-      background: #ffffff;
-      border: 1px solid #f8f8f8;
-      box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
-      border-radius: 40px;
-      transition-duration: 0.3s;
     }
   }
 
@@ -256,93 +178,6 @@ header {
       font-size: 32px;
       line-height: 39px;
       color: #000000;
-    }
-  }
-
-  .row {
-    margin-top: 55px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    .col {
-      margin: 15px;
-      width: 210px;
-      height: 210px;
-      padding: 10px 20px 10px 20px;
-
-      transition-duration: 0.3s;
-      padding-bottom: 30px;
-      background: #ffffff;
-      border: 1px solid #f3f3f3;
-      border-radius: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-
-      h4 {
-        margin-top: 10px;
-
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-        color: #000000;
-        text-align: center;
-      }
-
-      .col__price {
-        display: flex;
-        width: 100%;
-        margin-top: 20px;
-        justify-content: space-between;
-
-        p {
-          font-family: "Inter";
-          font-style: normal;
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 13px;
-          text-transform: uppercase;
-          color: #bdbdbd;
-        }
-
-        h5 {
-          font-family: "Inter";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 14px;
-          line-height: 17px;
-          color: #000000;
-        }
-
-        button {
-          width: 32px;
-          height: 32px;
-          background: #ffffff;
-          border: 1px solid #f2f2f2;
-          border-radius: 8px;
-          background: url("../../public/img/plus.svg") no-repeat center center;
-          transition-duration: 0.3s;
-          cursor: pointer;
-        }
-
-        button:hover {
-          border: 1px solid #d1d1d1;
-          transition-duration: 0.3s;
-        }
-      }
-    }
-
-    .col:hover {
-      background: #ffffff;
-      border: 1px solid #f8f8f8;
-      box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
-      border-radius: 40px;
-      transition-duration: 0.3s;
     }
   }
 }
@@ -393,6 +228,16 @@ header {
           height: 70%;
           padding: 0 5px 0 5px;
 
+          &::-webkit-scrollbar {
+            width: 5px;
+            background-color: #fcfcfc;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #9dd558;
+            border-radius: 5px;
+          }
+
           .col {
             width: 300px;
             display: flex;
@@ -436,20 +281,11 @@ header {
               background: #ffffff;
               border: 1px solid #f2f2f2;
               border-radius: 8px;
-              background: url("../../public/img/plusr.svg") no-repeat center center;
+              background: url("../../public/img/plusr.svg") no-repeat center
+                center;
               transition-duration: 0.3s;
             }
           }
-        }
-
-        .row::-webkit-scrollbar {
-          width: 5px;
-          background-color: #fcfcfc;
-        }
-
-        .row::-webkit-scrollbar-thumb {
-          background-color: #9dd558;
-          border-radius: 5px;
         }
       }
 
@@ -462,35 +298,123 @@ header {
           margin: 10px 0 5px 0;
         }
       }
+    }
+  }
+}
 
-      .green-button {
-        transition-duration: 0.3s;
-        margin-top: 20px;
-        display: flex;
-        position: relative;
-        width: 100%;
-        height: 55px;
-        justify-content: center;
-        align-items: center;
-        background: #9dd558;
-        border-radius: 18px;
-        border: 0;
+.green-button {
+  &:hover {
+    box-shadow: 0px 14px 15px rgba(0, 0, 0, 0.05);
+    transition-duration: 0.3s;
+  }
+
+  transition-duration: 0.3s;
+  margin-top: 20px;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 55px;
+  justify-content: center;
+  align-items: center;
+  background: #9dd558;
+  border-radius: 18px;
+  border: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+
+  img {
+    position: absolute;
+    right: 10%;
+  }
+}
+
+.main,
+.my-purchases {
+  .row {
+    margin-top: 55px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .col {
+    margin: 15px;
+    width: 210px;
+    height: 210px;
+    padding: 10px 20px 10px 20px;
+    transition-duration: 0.3s;
+    padding-bottom: 30px;
+    background: #ffffff;
+    border: 1px solid #f3f3f3;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    &:hover {
+      background: #ffffff;
+      border: 1px solid #f8f8f8;
+      box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+      border-radius: 40px;
+      transition-duration: 0.3s;
+    }
+
+    h4 {
+      margin-top: 10px;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      color: #000000;
+      text-align: center;
+    }
+
+    .col__price {
+      display: flex;
+      width: 100%;
+      margin-top: 20px;
+      justify-content: space-between;
+
+      p {
         font-family: "Inter";
         font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 19px;
-        text-align: center;
-        color: #ffffff;
-
-        img {
-          position: absolute;
-          right: 10%;
-        }
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 13px;
+        text-transform: uppercase;
+        color: #bdbdbd;
       }
 
-      .green-button:hover {
-        box-shadow: 0px 14px 15px rgba(0, 0, 0, 0.05);
+      h5 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+      }
+
+      button {
+        width: 32px;
+        height: 32px;
+        background: #ffffff;
+        border: 1px solid #f2f2f2;
+        border-radius: 8px;
+        background: url("../../public/img/plus.svg") no-repeat center center;
+        transition-duration: 0.3s;
+      }
+
+      button:hover {
+        border: 1px solid #d1d1d1;
         transition-duration: 0.3s;
       }
     }
