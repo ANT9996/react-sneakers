@@ -3,6 +3,7 @@ import Cart from "./jsx/Cart";
 import Header from "./jsx/Header";
 import Main from "./jsx/Main";
 import MyPurchases from "./jsx/MyPurchases";
+import MyFavourites from './jsx/MyFavourites';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div className="content">
         <Main />
         {/* <MyPurchases /> */}
+        {/* <MyFavourites /> */}
       </div>
       {/* <Cart /> */}
     </div>

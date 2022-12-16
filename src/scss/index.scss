@@ -65,7 +65,6 @@ header {
       display: flex;
       align-items: center;
       padding: 10px;
-      text-decoration: underline;
 
       span {
         margin-left: 8px;
@@ -146,7 +145,8 @@ header {
   }
 }
 
-.my-purchases {
+.my-purchases,
+.my-favourites {
   // display: none;
   padding: 30px 55px 30px 55px;
 
@@ -281,8 +281,7 @@ header {
               background: #ffffff;
               border: 1px solid #f2f2f2;
               border-radius: 8px;
-              background: url("../../public/img/plusr.svg") no-repeat center
-                center;
+              background: url("../../public/img/plusr.svg") no-repeat center center;
               transition-duration: 0.3s;
             }
           }
@@ -334,7 +333,8 @@ header {
 }
 
 .main,
-.my-purchases {
+.my-purchases,
+.my-favourites {
   .row {
     margin-top: 55px;
     display: flex;
@@ -344,6 +344,7 @@ header {
   }
 
   .col {
+    position: relative;
     margin: 15px;
     width: 210px;
     height: 210px;
@@ -416,6 +417,25 @@ header {
       button:hover {
         border: 1px solid #d1d1d1;
         transition-duration: 0.3s;
+      }
+    }
+
+    .favourite-button {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid rgb(190, 190, 190);
+      border-radius: 7px;
+      padding: 5px;
+      transition-duration: 0.3s;
+      opacity: 0.2;
+      &:hover {
+        transition-duration: 0.3s;
+        opacity: 1;
       }
     }
   }

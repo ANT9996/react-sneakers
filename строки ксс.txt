@@ -1,3 +1,0 @@
-index.scss -
-    .cart - 226
-    .content - 89

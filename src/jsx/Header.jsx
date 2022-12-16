@@ -18,11 +18,14 @@ function Header() {
         </div>
         <ul className="headerRight">
           <li>
-            <img height="18" width="18" src="./img/cart.svg" />
+            <img height="18" width="18" src="./img/cart.svg" alt='cart'/>
             <span>1205 руб.</span>
           </li>
           <li>
-            <img height="18" width="18" src="./img/profile.svg" />
+            <img height="18" width="18" src="./img/favourites.svg" alt='favourites'/>
+          </li>
+          <li>
+            <img height="18" width="18" src="./img/profile.svg"  alt='profile'/>
           </li>
         </ul>
       </header>
