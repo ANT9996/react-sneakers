@@ -1,6 +1,7 @@
 import React from "react";
+import MainCol from "./MainCol";
 
-function MyFavourites() {
+function MyFavourites(props) {
   return (
     <div className="my-purchases">
       <div className="back-h1">
@@ -8,25 +9,13 @@ function MyFavourites() {
         <h1>Мои избранные</h1>
       </div>
       <div className="row">
-        <div className="col">
-          <div className="favourite-button">
-            <img
-              height="18"
-              width="18"
-              src="./img/favourites.svg"
-              alt="favourites"
-            />
-          </div>
-          <img height={112} width={133} src="./img/cross1.jpg" alt="Кроссовки"/>
-          <h4>Мужские Кроссовки Nike Blazer Mid Suede</h4>
-          <div className="col__price">
-            <div>
-              <p>Цена:</p>
-              <h5>12 999 руб.</h5>
-            </div>
-            <button></button>
-          </div>
-        </div>
+      {props.items.map((item) => (
+          <MainCol
+            price={item.price}
+            name={item.name}
+            onClick={() => console.log(item)}
+          />
+        ))}
       </div>
     </div>
   );

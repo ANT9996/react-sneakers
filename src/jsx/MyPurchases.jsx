@@ -1,7 +1,7 @@
 import React from "react";
 import MainCol from "./MainCol";
 
-function MyPurchases() {
+function MyPurchases(props) {
   return (
     <div className="my-purchases">
       <div className="back-h1">
@@ -9,7 +9,13 @@ function MyPurchases() {
         <h1>Мои покупки</h1>
       </div>
       <div className="row">
-        <MainCol />
+      {props.items.map((item) => (
+          <MainCol
+            price={item.price}
+            name={item.name}
+            onClick={() => console.log(item)}
+          />
+        ))}
       </div>
     </div>
   );

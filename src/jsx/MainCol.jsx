@@ -1,24 +1,38 @@
 import React from "react";
 
-function MainCol() {
+function MainCol({id, name, price, img, onAddToCart}) {
+  const [checked, setChecked] = React.useState(false);
+  const [favourite, setFavourite] = React.useState(false);
+  const onClickCart = () => {
+    if (checked === false) {
+      onAddToCart({id, name, price, img})
+    }
+    setChecked(!checked)
+  }
+
+  const onClickFavourite = () => {
+    setFavourite(!favourite)
+  }
+
   return (
     <div className="col">
-      <div className="favourite-button">
-        <img
-          height="18"
-          width="18"
-          src="./img/favourites.svg"
-          alt="favourites"
-        />
-      </div>
-      <img height={112} width={133} src="./img/cross1.jpg" alt=""/>
-      <h4>Мужские Кроссовки Nike Blazer Mid Suede</h4>
+      <img src={img} alt="" />
+      <h4>{name}</h4>
       <div className="col__price">
         <div>
           <p>Цена:</p>
-          <h5>12 999 руб.</h5>
+          <h5>{price} руб.</h5>
         </div>
-        <button></button>
+        <div className="buttons">
+          <button
+          className={`favourite-button ${favourite ? "buttonFavouriteAdded" : ""}`}
+          onClick={onClickFavourite}
+          ></button>
+          <button
+          className={`addCart ${checked ? "buttonCartAdded" : ""}`}
+          onClick={onClickCart}
+          ></button>
+        </div>
       </div>
     </div>
   );
