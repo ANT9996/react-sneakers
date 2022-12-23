@@ -27,7 +27,7 @@ header {
 
   .headerLeft {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
     img {
       margin-right: 10px;
@@ -93,7 +93,7 @@ header {
   .h1-search {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     h1 {
       font-family: "Inter";
@@ -503,4 +503,11 @@ header {
   background-color: #FEF0F0!important;
   opacity: 1!important;
   border: 0!important;
+}
+$wh: 500px;
+.photo {
+  position: absolute;
+  width: $wh!important;
+  height: $wh!important;
+  z-index: 2;
 }

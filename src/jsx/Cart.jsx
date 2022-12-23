@@ -23,10 +23,12 @@ function Cart(props) {
             <div className="row">
               {props.items.map((item, i) => (
                 <CartCard
-                  key={i}
+                  key={item.id}
+                  id={item.id}
                   name={item.name}
                   price={item.price}
                   img={item.img}
+                  onRemove={(id) => props.onRemove(id)}
                 />
               ))}
             </div>

@@ -9,7 +9,7 @@ function CartCard(props) {
         <h5>{props.name}</h5>
         <p>{props.price} руб.</p>
       </div>
-      <button></button>
+      <button onClick={() => props.onRemove(props.id)}></button>
     </div>
   );
 }
