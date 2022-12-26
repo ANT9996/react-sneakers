@@ -1,19 +1,25 @@
 import React from "react";
 import MainCol from "./MainCol";
+import { Link } from "react-router-dom";
 
 function MyFavourites(props) {
   return (
     <div className="my-purchases">
       <div className="back-h1">
-        <button></button>
+        <Link to={"/"} className={'gerge'}>
+          <button></button>
+        </Link>
         <h1>Мои избранные</h1>
       </div>
       <div className="row">
-      {props.items.map((item) => (
+        {props.items.map((item) => (
           <MainCol
-            price={item.price}
-            name={item.name}
-            onClick={() => console.log(item)}
+            key={item.id}
+            {...item}
+            onAddToCart={(obj) => props.addToCart(obj)}
+            onAddToFavourite={(obj) => props.onAddToFavourite(obj)}
+            onRemFromFavourite={(id) => props.onRemFromFavourite(id)}
+            isFavourite
           />
         ))}
       </div>

@@ -1,16 +1,23 @@
 import React from "react";
 
-function MainCol({id, name, price, img, onAddToCart}) {
-  const [checked, setChecked] = React.useState(false);
-  const [favourite, setFavourite] = React.useState(false);
+function MainCol({id, name, price, img, onAddToCart, onAddToFavourite, onRemFromFavourite, onRemoveItem, isFavourite=false, isCarted=false,}) {
+  const [checked, setChecked] = React.useState(isCarted);
+  const [favourite, setFavourite] = React.useState(isFavourite);
   const onClickCart = () => {
     if (checked === false) {
       onAddToCart({id, name, price, img})
+    } else {
+      onRemoveItem(id)
     }
     setChecked(!checked)
   }
 
   const onClickFavourite = () => {
+    if (favourite === false) {
+      onAddToFavourite({id, name, price, img})
+    } else {
+      onRemFromFavourite(id)
+    }
     setFavourite(!favourite)
   }
 

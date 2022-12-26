@@ -10,23 +10,32 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [cartItems, setCartItems] = React.useState([]);
+  const [favouriteItems, setFavouriteItems] = React.useState([]);
   const [items, setItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
 
   const onChangeSearchInput = (e) => {
-    console.log(e.target.value);
     setSearchValue(e.target.value);
   };
 
   const addToCart = (obj) => {
     axios.post("https://63959cf790ac47c6806f0140.mockapi.io/cart", obj);
     setCartItems((prev) => [...prev, obj]);
-    console.log(cartItems);
+  };
+
+  const onAddToFavourite = (obj) => {
+    axios.post("https://63959cf790ac47c6806f0140.mockapi.io/favourites", obj);
+    setFavouriteItems((prev) => [...prev, obj]);
   };
 
   const onRemoveItem = (id) => {
     axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/cart/${id}`);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const onRemFromFavourite = (id) => {
+    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/favourites/${id}`);
+    setFavouriteItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   React.useEffect(() => {
@@ -37,7 +46,17 @@ function App() {
     axios
       .get("https://63959cf790ac47c6806f0140.mockapi.io/cart")
       .then((res) => setCartItems(res.data));
+
+    axios
+      .get("https://63959cf790ac47c6806f0140.mockapi.io/favourites")
+      .then((res) => setFavouriteItems(res.data));
   }, []);
+
+  if (cartOpened) {
+    document.querySelector("body").style.overflow = "hidden";
+  } else {
+    document.querySelector("body").style.overflow = "overlay";
+  }
 
   return (
     <div className="wrapper">
@@ -79,11 +98,13 @@ function App() {
                     .map((item) => (
                       <MainCol
                         key={item.id}
-                        id={item.id}
-                        price={item.price}
-                        name={item.name}
-                        img={item.img}
+                        {...item}
+                        isFavourite={item.isFavourite}
+                        isCarted={item.isCarted}
                         onAddToCart={(obj) => addToCart(obj)}
+                        onAddToFavourite={(obj) => onAddToFavourite(obj)}
+                        onRemFromFavourite={(id) => onRemFromFavourite(id)}
+                        onRemoveItem={(id) => onRemoveItem(id)}
                       />
                     ))}
                 </div>
@@ -92,7 +113,15 @@ function App() {
           />
 
           <Route path="/p" element={<MyPurchases />} />
-          <Route path="/f" element={<MyFavourites />} />
+          <Route
+            path="/f"
+            element={
+              <MyFavourites
+                items={favouriteItems}
+                onRemFromFavourite={(id) => onRemFromFavourite(id)}
+              />
+            }
+          />
         </Routes>
       </div>
       {cartOpened && (
