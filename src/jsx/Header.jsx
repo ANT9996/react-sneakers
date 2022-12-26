@@ -26,7 +26,7 @@ function Header(props) {
           <span>1205 руб.</span>
         </li>
         <li>
-          <Link to={'/f'}>
+          <Link to={"/favourites"}>
             <img
               height="18"
               width="18"
@@ -36,7 +36,9 @@ function Header(props) {
           </Link>
         </li>
         <li>
-          <img height="18" width="18" src="./img/profile.svg" alt="profile" />
+          <Link to={"/orders"}>
+            <img height="18" width="18" src="./img/profile.svg" alt="profile" />
+          </Link>
         </li>
       </ul>
     </header>

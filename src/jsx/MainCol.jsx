@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 
 function MainCol({id, name, price, img, onAddToCart, onAddToFavourite, onRemFromFavourite, onRemoveItem, isFavourite=false, isCarted=false,}) {
   const [checked, setChecked] = React.useState(isCarted);
@@ -7,7 +8,7 @@ function MainCol({id, name, price, img, onAddToCart, onAddToFavourite, onRemFrom
     if (checked === false) {
       onAddToCart({id, name, price, img})
     } else {
-      onRemoveItem(id)
+      onRemoveItem(id, name)
     }
     setChecked(!checked)
   }

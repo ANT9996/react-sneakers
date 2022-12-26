@@ -1,9 +1,9 @@
 import React from "react";
 import Cart from "./jsx/Cart";
 import Header from "./jsx/Header";
-import MyPurchases from "./jsx/MyPurchases";
 import MyFavourites from "./jsx/MyFavourites";
 import MainCol from "./jsx/MainCol";
+import MyOrders from "./jsx/MyOrders";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 
@@ -18,23 +18,29 @@ function App() {
     setSearchValue(e.target.value);
   };
 
+  React.useEffect(() => {console.log(cartItems);}, [cartItems])
+
   const addToCart = (obj) => {
-    axios.post("https://63959cf790ac47c6806f0140.mockapi.io/cart", obj);
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/sneakers/${Number(obj.id)}`, {isCarted: true});
+    // console.log(obj);
     setCartItems((prev) => [...prev, obj]);
   };
 
   const onAddToFavourite = (obj) => {
-    axios.post("https://63959cf790ac47c6806f0140.mockapi.io/favourites", obj);
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/sneakers/${obj.id}`, {isFavourite: true});
     setFavouriteItems((prev) => [...prev, obj]);
   };
 
-  const onRemoveItem = (id) => {
-    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/cart/${id}`);
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  const onRemoveItem = (id, name) => {
+    // let elem = cartItems.find(item => item.name === name)
+    // console.log(id, elem);
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/sneakers/${id}`, {isCarted: false});
+    setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
+    
   };
 
   const onRemFromFavourite = (id) => {
-    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/favourites/${id}`);
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/sneakers/${id}`, {isFavourite: false});
     setFavouriteItems((prev) => prev.filter((item) => item.id !== id));
   };
 
@@ -104,7 +110,7 @@ function App() {
                         onAddToCart={(obj) => addToCart(obj)}
                         onAddToFavourite={(obj) => onAddToFavourite(obj)}
                         onRemFromFavourite={(id) => onRemFromFavourite(id)}
-                        onRemoveItem={(id) => onRemoveItem(id)}
+                        onRemoveItem={(id, name) => onRemoveItem(id, name)}
                       />
                     ))}
                 </div>
@@ -112,9 +118,9 @@ function App() {
             }
           />
 
-          <Route path="/p" element={<MyPurchases />} />
+          <Route path="/orders" element={<MyOrders />} />
           <Route
-            path="/f"
+            path="/favourites"
             element={
               <MyFavourites
                 items={favouriteItems}
