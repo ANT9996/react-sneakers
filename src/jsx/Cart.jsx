@@ -1,13 +1,14 @@
 import React from "react";
 import CartCard from "./CartCard";
+import AppContext from "../context";
 
 function Cart(props) {
-
+  const {cartItems} = React.useContext(AppContext)
   const [cost, setCost] = React.useState(0)
   React.useEffect(() => {
     setCost(0)
-    props.items.map(item => setCost(prev => Number(prev)+Number(item.price)))
-  }, [props.items]);
+    cartItems.map(item => setCost(prev => Number(prev)+Number(item.price)))
+  }, [cartItems]);
 
   return (
     <div className="cart">
@@ -21,7 +22,7 @@ function Cart(props) {
               </span>
             </h2>
             <div className="row">
-              {props.items.map(item => (
+              {cartItems.map(item => (
                 <CartCard
                   key={item.id}
                   {...item}
