@@ -21,7 +21,7 @@ function Cart(props) {
               </span>
             </h2>
             <div className="row">
-              {props.items.map(item => (
+              {props.items.filter(item => item.isCarted === true).map(item => (
                 <CartCard
                   key={item.id}
                   {...item}

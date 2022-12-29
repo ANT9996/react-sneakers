@@ -19,23 +19,28 @@ function App() {
   };
 
   const addToCart = (obj) => {
-    axios.post("https://63959cf790ac47c6806f0140.mockapi.io/cart", obj);
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/skeakers/${obj.id}`, {isCarted: true})
     setCartItems((prev) => [...prev, obj]);
-  };
-
-  const onAddToFavourite = (obj) => {
-    axios.post("https://63959cf790ac47c6806f0140.mockapi.io/favourites", obj);
-    setFavouriteItems((prev) => [...prev, obj]);
+    items.map(item => {
+      if (item.id === obj.id) {
+        return 0
+      }
+    })
   };
 
   const onRemoveItem = (id) => {
-    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/cart/${id}`);
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/skeakers/${id}`, {isCarted: false});
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const onAddToFavourite = (obj) => {
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/skeakers/${obj.id}`, {isFavourite: true})
+    .then(setFavouriteItems((prev) => [...prev, obj]))
+  };
+
   const onRemFromFavourite = (id) => {
-    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/favourites/${id}`);
-    setFavouriteItems((prev) => prev.filter((item) => item.id !== id));
+    axios.put(`https://63959cf790ac47c6806f0140.mockapi.io/skeakers/${id}`, {isFavourite: false})
+    .then(setFavouriteItems((prev) => prev.filter((item) => item.id !== id)))
   };
 
   React.useEffect(() => {
@@ -43,13 +48,13 @@ function App() {
       .get("https://63959cf790ac47c6806f0140.mockapi.io/skeakers")
       .then((res) => setItems(res.data));
 
-    axios
-      .get("https://63959cf790ac47c6806f0140.mockapi.io/cart")
-      .then((res) => setCartItems(res.data));
+    // axios
+    //   .get("https://63959cf790ac47c6806f0140.mockapi.io/cart")
+    //   .then((res) => setCartItems(res.data));
 
-    axios
-      .get("https://63959cf790ac47c6806f0140.mockapi.io/favourites")
-      .then((res) => setFavouriteItems(res.data));
+    // axios
+    //   .get("https://63959cf790ac47c6806f0140.mockapi.io/favourites")
+    //   .then((res) => setFavouriteItems(res.data));
   }, []);
 
   if (cartOpened) {
@@ -117,7 +122,7 @@ function App() {
             path="/f"
             element={
               <MyFavourites
-                items={favouriteItems}
+                items={items} 
                 onRemFromFavourite={(id) => onRemFromFavourite(id)}
               />
             }
@@ -127,7 +132,7 @@ function App() {
       {cartOpened && (
         <Cart
           onRemove={(id) => onRemoveItem(id)}
-          items={cartItems}
+          items={items}
           onClickCart={() => setCartOpened(false)}
         />
       )}
