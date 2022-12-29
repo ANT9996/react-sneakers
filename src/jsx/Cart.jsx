@@ -3,7 +3,7 @@ import CartCard from "./CartCard";
 import AppContext from "../context";
 
 function Cart(props) {
-  const {cartItems} = React.useContext(AppContext)
+  const {items, cartItems} = React.useContext(AppContext)
   const [cost, setCost] = React.useState(0)
   const costVal = cartItems.reduce( (sum, obj) => Number(obj.price) + Number(sum), 0);
 
