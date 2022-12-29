@@ -34,17 +34,17 @@ function App() {
   };
 
   const onRemoveItem = (id) => {
-    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/cart/${id}`);
+    const findItem = cartItems.find(item => item.parentId === id);
+    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/cart/${findItem.id}`);
     setCartItems((prev) =>
-      prev.filter((item) => Number(item.id) !== Number(id))
+      prev.filter((item) => Number(item.parentId) !== Number(id))
     );
   };
 
   const onRemFromFavourite = (id) => {
-    axios.delete(
-      `https://63959cf790ac47c6806f0140.mockapi.io/favourites/${id}`
-    );
-    setFavouriteItems((prev) => prev.filter((item) => item.id !== id));
+    const findItem = favouriteItems.find(item => item.parentId === id);
+    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/favourites/${findItem.id}`);
+    setFavouriteItems((prev) => prev.filter((item) => item.parentId !== id));
   };
 
   React.useEffect(() => {
@@ -118,12 +118,6 @@ function App() {
                           <MainCol
                             key={item.id}
                             {...item}
-                            isFavourite={favouriteItems.some(
-                              (obj) => obj.id === item.id
-                            )}
-                            isCarted={cartItems.some(
-                              (obj) => obj.id === item.id
-                            )}
                             onAddToCart={(obj) => addToCart(obj)}
                             onAddToFavourite={(obj) => onAddToFavourite(obj)}
                             onRemFromFavourite={(id) => onRemFromFavourite(id)}
