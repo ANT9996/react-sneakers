@@ -1,6 +1,5 @@
 import React from "react";
 import AppContext from "./../context";
-import ContentLoader from "react-content-loader";
 
 function MainCol({
   id,
@@ -17,13 +16,13 @@ function MainCol({
 }) {
   const [checked, setChecked] = React.useState(isCarted);
   const [favourite, setFavourite] = React.useState(isFavourite);
-  const { cartItems, favouriteItems, cardLoading } = React.useContext(AppContext);
+  const { cartItems, favouriteItems } = React.useContext(AppContext);
   const obj = { id, parentId: id, name, price, img }
   const onClickCart = () => {
     if (checked === false) {
       onAddToCart(obj);
     } else {
-      onRemoveItem(id, name);
+      onRemoveItem(id);
     }
     setChecked(!checked);
   };
