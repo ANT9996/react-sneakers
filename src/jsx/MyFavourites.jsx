@@ -14,15 +14,17 @@ function MyFavourites(props) {
         <h1>Мои избранные</h1>
       </div>
       <div className="row">
-        {favouriteItems.map((item) => (
-          <MainCol
-            key={item.id}
-            {...item}
-            onAddToCart={(obj) => props.addToCart(obj)}
-            onAddToFavourite={(obj) => props.onAddToFavourite(obj)}
-            onRemFromFavourite={(id) => props.onRemFromFavourite(id)}
-          />
-        ))}
+        {
+          (favouriteItems).map((item) => (
+            <MainCol
+              key={item.id}
+              {...item}
+              onAddToCart={(obj) => props.addToCart(obj)}
+              onAddToFavourite={(obj) => props.onAddToFavourite(obj)}
+              onRemFromFavourite={(id) => props.onRemFromFavourite(id)}
+            />
+          ))
+        }
       </div>
     </div>
   );

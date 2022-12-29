@@ -7,6 +7,8 @@ import MyOrders from "./jsx/MyOrders";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import AppContext from "./context.js";
+import ContentLoader from "react-content-loader";
+import MyLoader from "./jsx/MyLoader";
 
 function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
@@ -14,12 +16,10 @@ function App() {
   const [favouriteItems, setFavouriteItems] = React.useState([]);
   const [items, setItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
-
+  const [cardLoading, setCardLoading] = React.useState(true);
   const onChangeSearchInput = (e) => {
     setSearchValue(e.target.value);
   };
-
-  // React.useEffect(() => {console.log(cartItems);}, [cartItems])
 
   const addToCart = (obj) => {
     axios.post(`https://63959cf790ac47c6806f0140.mockapi.io/cart`, obj);
@@ -28,7 +28,7 @@ function App() {
   };
 
   const onAddToFavourite = (obj) => {
-    axios.post(`https://63959cf790ac47c6806f0140.mockapi.io/favourite`, obj);
+    axios.post(`https://63959cf790ac47c6806f0140.mockapi.io/favourites`, obj);
     setFavouriteItems((prev) => [...prev, obj]);
     console.log(obj);
   };
@@ -41,7 +41,9 @@ function App() {
   };
 
   const onRemFromFavourite = (id) => {
-    axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/favourite/${id}`);
+    axios.delete(
+      `https://63959cf790ac47c6806f0140.mockapi.io/favourites/${id}`
+    );
     setFavouriteItems((prev) => prev.filter((item) => item.id !== id));
   };
 
@@ -60,6 +62,7 @@ function App() {
       setItems(skeakersData.data);
       setCartItems(cartData.data);
       setFavouriteItems(favouriteData.data);
+      setCardLoading(false);
     }
     fetchData();
   }, []);
@@ -71,7 +74,9 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={{ items, cartItems, favouriteItems}}>
+    <AppContext.Provider
+      value={{ items, cartItems, favouriteItems, cardLoading }}
+    >
       <div className="wrapper">
         <Header onClickCart={() => setCartOpened(true)} />
         <div className="line"></div>
@@ -102,24 +107,38 @@ function App() {
                     </div>
                   </div>
                   <div className="row">
-                    {items
-                      .filter((item) =>
-                        item.name
-                          .toLowerCase()
-                          .includes(searchValue.toLowerCase())
-                      )
-                      .map((item) => (
-                        <MainCol
-                          key={item.id}
-                          {...item}
-                          isFavourite={favouriteItems.some(obj => obj.id === item.id )}
-                          isCarted={cartItems.some(obj => obj.id === item.id )}
-                          onAddToCart={(obj) => addToCart(obj)}
-                          onAddToFavourite={(obj) => onAddToFavourite(obj)}
-                          onRemFromFavourite={(id) => onRemFromFavourite(id)}
-                          onRemoveItem={(id, name) => onRemoveItem(id, name)}
-                        />
-                      ))}
+                    {cardLoading === false ? (
+                      items
+                        .filter((item) =>
+                          item.name
+                            .toLowerCase()
+                            .includes(searchValue.toLowerCase())
+                        )
+                        .map((item) => (
+                          <MainCol
+                            key={item.id}
+                            {...item}
+                            isFavourite={favouriteItems.some(
+                              (obj) => obj.id === item.id
+                            )}
+                            isCarted={cartItems.some(
+                              (obj) => obj.id === item.id
+                            )}
+                            onAddToCart={(obj) => addToCart(obj)}
+                            onAddToFavourite={(obj) => onAddToFavourite(obj)}
+                            onRemFromFavourite={(id) => onRemFromFavourite(id)}
+                            onRemoveItem={(id, name) => onRemoveItem(id, name)}
+                          />
+                        ))
+                    ) : (
+                      <>
+                        {[...Array(10)].map(() => (
+                          <div className="col">
+                            <MyLoader />
+                          </div>
+                        ))}
+                      </>
+                    )}
                   </div>
                 </div>
               }

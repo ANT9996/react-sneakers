@@ -5,10 +5,7 @@ import AppContext from "../context";
 function Cart(props) {
   const {cartItems} = React.useContext(AppContext)
   const [cost, setCost] = React.useState(0)
-  React.useEffect(() => {
-    setCost(0)
-    cartItems.map(item => setCost(prev => Number(prev)+Number(item.price)))
-  }, [cartItems]);
+  const costVal = cartItems.reduce( (sum, obj) => Number(obj.price) + Number(sum), 0);
 
   return (
     <div className="cart">
@@ -35,12 +32,12 @@ function Cart(props) {
             <div className="price-value">
               <div>Итого: </div>
               <div className="w-100"></div>
-              <div> {cost} руб.</div>
+              <div> {costVal} руб.</div>
             </div>
             <div className="price-nalog">
               <div>Налог 5%: </div>
               <div className="w-100"></div>
-              <div>{(Number(cost)*0.05)} руб.</div>
+              <div>{(Number(costVal)*0.05)} руб.</div>
             </div>
             <button className="green-button">
               Оформить заказ <img src="./img/arrow.svg" alt="" />

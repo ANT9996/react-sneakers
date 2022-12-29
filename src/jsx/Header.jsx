@@ -4,7 +4,6 @@ import AppContext from '../context';
 
 function Header(props) {
   const { cartItems } = React.useContext(AppContext)
-  // const [cost, setCost] = React.useState(0);
   const costVal = cartItems.reduce( (sum, obj) => Number(obj.price) + Number(sum), 0);
   return (
     <header>
