@@ -44,7 +44,9 @@ function App() {
   const onRemFromFavourite = (id) => {
     const findItem = favouriteItems.find(item => item.parentId === id);
     axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/favourites/${findItem.id}`);
-    setFavouriteItems((prev) => prev.filter((item) => item.parentId !== id));
+    setFavouriteItems((prev) => 
+    prev.filter((item) => Number(item.parentId) !== Number(id))
+    );
   };
 
   React.useEffect(() => {
@@ -121,14 +123,14 @@ function App() {
                             onAddToCart={(obj) => addToCart(obj)}
                             onAddToFavourite={(obj) => onAddToFavourite(obj)}
                             onRemFromFavourite={(id) => onRemFromFavourite(id)}
-                            onRemoveItem={(id, name) => onRemoveItem(id, name)}
+                            onRemoveItem={(id) => onRemoveItem(id)}
                           />
                         ))
                     ) : (
                       <>
-                        {[...Array(10)].map(() => (
-                          <div className="col">
-                            <MyLoader />
+                        {[...Array(10)].map((obj, i) => (
+                          <div className="col" key={i}>
+                            <MyLoader/>
                           </div>
                         ))}
                       </>
@@ -143,7 +145,10 @@ function App() {
               path="/favourites"
               element={
                 <MyFavourites
-                  onRemFromFavourite={(id) => onRemFromFavourite(id)}
+                onAddToCart={(obj) => addToCart(obj)}
+                onAddToFavourite={(obj) => onAddToFavourite(obj)}
+                onRemFromFavourite={(id) => onRemFromFavourite(id)}
+                onRemoveItem={(id) => onRemoveItem(id)}
                 />
               }
             />
