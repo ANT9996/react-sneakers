@@ -14,6 +14,7 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [cartItems, setCartItems] = React.useState([]);
   const [favouriteItems, setFavouriteItems] = React.useState([]);
+  const [orderItems, setOrderItems] = React.useState([]);
   const [items, setItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
   const [cardLoading, setCardLoading] = React.useState(true);
@@ -60,10 +61,14 @@ function App() {
       const favouriteData = await axios.get(
         "https://63959cf790ac47c6806f0140.mockapi.io/favourites"
       );
+      const orderData = await axios.get(
+        "https://63959cf790ac47c6806f0140.mockapi.io/orders"
+      );
 
       setItems(skeakersData.data);
       setCartItems(cartData.data);
       setFavouriteItems(favouriteData.data);
+      setOrderItems(orderData.data);
       setCardLoading(false);
     }
     fetchData();
@@ -77,7 +82,7 @@ function App() {
 
   return (
     <AppContext.Provider
-      value={{ items, cartItems, favouriteItems, cardLoading }}
+      value={{ items, cartItems, favouriteItems, orderItems, cardLoading }}
     >
       <div className="wrapper">
         <Header onClickCart={() => setCartOpened(true)} />

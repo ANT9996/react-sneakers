@@ -326,6 +326,10 @@ header {
       }
 
       .items-prices {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
         .price-value,
         .price-nalog {
           display: flex;
@@ -342,6 +346,82 @@ header {
   }
 }
 
+.cartEmptyContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .cartEmpty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h3 {
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 27px;
+      color: #000000;
+    }
+
+    h5 {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      color: #000000;
+      opacity: 0.4;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 80%;
+      border: 0;
+      padding: 15px;
+      background: #9DD458;
+      border-radius: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition-duration: .3s;
+
+      span {
+        font-family: 'Inter';
+        font-style: normal;  
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #FFFFFF;
+        transition-duration: .3s;
+
+        img {
+          transition-duration: .3s;
+          transform: rotate(180deg);
+          margin-right: 5px;
+        }
+      }
+      &:hover {
+        transition-duration: .3s;
+        -webkit-box-shadow: 0px 10px 15px 0px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 0px 10px 15px 0px rgba(34, 60, 80, 0.2);
+        box-shadow: 0px 10px 15px 0px rgba(34, 60, 80, 0.2);
+        img {
+          margin-right: 20px;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
 .w-100 {
   width: 100%!important;
   height: 15px;
@@ -351,34 +431,72 @@ header {
 }
 
 .green-button {
-  &:hover {
-    box-shadow: 0px 14px 15px rgba(0, 0, 0, 0.05);
-    transition-duration: 0.3s;
-  }
+  // &:hover {
+  //   box-shadow: 0px 14px 15px rgba(0, 0, 0, 0.05);
+  //   transition-duration: 0.3s;
+  // }
 
-  transition-duration: 0.3s;
-  margin-top: 20px;
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 55px;
-  justify-content: center;
-  align-items: center;
-  background: #9dd558;
-  border-radius: 18px;
-  border: 0;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  text-align: center;
-  color: #ffffff;
+  // transition-duration: 0.3s;
+  // margin-top: 20px;
+  // display: flex;
+  // position: relative;
+  // width: 100%;
+  // height: 55px;
+  // justify-content: center;
+  // align-items: center;
+  // background: #9dd558;
+  // border-radius: 18px;
+  // border: 0;
+  // font-family: "Inter";
+  // font-style: normal;
+  // font-weight: 600;
+  // font-size: 16px;
+  // line-height: 19px;
+  // text-align: center;
+  // color: #ffffff;
 
-  img {
-    position: absolute;
-    right: 10%;
-  }
+  // img {
+  //   position: absolute;
+  //   right: 10%;
+  // }
+
+    margin-top: 15px;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    background: #9DD458;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: .3s;
+
+    span {
+      font-family: 'Inter';
+      font-style: normal;  
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #FFFFFF;
+      transition-duration: .3s;
+
+      img {
+        transition-duration: .3s;
+        transform: rotate(180deg);
+        margin-right: 5px;
+      }
+    }
+    &:hover {
+      transition-duration: .3s;
+      -webkit-box-shadow: 0px 10px 15px 0px rgba(34, 60, 80, 0.2);
+      -moz-box-shadow: 0px 10px 15px 0px rgba(34, 60, 80, 0.2);
+      box-shadow: 0px 10px 15px 0px rgba(34, 60, 80, 0.2);
+      img {
+        margin-right: 20px;
+        margin-left: 20px;
+      }
+    }
 }
 
 .main,
