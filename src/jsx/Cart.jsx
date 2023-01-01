@@ -1,15 +1,19 @@
 import React from "react";
 import CartCard from "./CartCard";
 import AppContext from "../context";
+import CartMessage from "./CartMessage";
 
 function Cart(props) {
-  const { items, cartItems } = React.useContext(AppContext);
-  const [cost, setCost] = React.useState(0);
+  const { cartItems, setCartOpened, setCartItems } = React.useContext(AppContext);
+  const [isOrdered, setIsOredered] = React.useState(false);
+  const onClickOrder = () => {
+    setIsOredered(true)
+    setCartItems([])
+  }
   const costVal = cartItems.reduce(
     (sum, obj) => Number(obj.price) + Number(sum),
     0
   );
-
   return (
     <div className="cart">
       <div className="cart-rightSide-bg">
@@ -21,37 +25,38 @@ function Cart(props) {
                 ✖
               </span>
             </h2>
-            {cartItems.length > 0 && (
-              <div className="row">
-                {cartItems.map((item) => (
-                  <CartCard
-                    key={item.id}
-                    {...item}
-                    onRemove={(id) => props.onRemove(id)}
-                  />
-                ))}
-              </div>
+            {isOrdered ? (
+              <CartMessage
+                name={"Заказ оформлен!"}
+                description={
+                  "Ваш заказ #18 скоро будет передан курьерской доставке"
+                }
+                img={"./img/ordered.png"}
+                func={() => setIsOredered(false)}
+              />
+            ) : (
+              cartItems.length > 0 && (
+                <div className="row">
+                  {cartItems.map((item) => (
+                    <CartCard
+                      key={item.id}
+                      {...item}
+                      onRemove={(id) => props.onRemove(id)}
+                    />
+                  ))}
+                </div>
+              )
             )}
-            <div className="cartEmptyContainer">
-              <div className="cartEmpty">
-                <img
-                  width={120}
-                  height={120}
-                  src="./img/empty-cart.png"
-                  alt=""
-                />
-                <h3>Корзина пустая</h3>
-                <h5>
-                  Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
-                </h5>
-                <button>
-                  <span>
-                    <img src="./img/arrow.svg" alt="" />
-                  </span>
-                  <span>Вернуться назад</span>
-                </button>
-              </div>
-            </div>
+            {!(cartItems.length > 0) && (
+              <CartMessage
+                name={"Корзина пустая"}
+                description={
+                  "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+                }
+                img={"./img/empty-cart.png"}
+                func={() => setCartOpened(false)}
+              />
+            )}
           </div>
           {cartItems.length > 0 && (
             <div className="items-prices">
@@ -65,7 +70,7 @@ function Cart(props) {
                 <div className="w-100"></div>
                 <div>{(Number(costVal) * 0.05).toFixed(2)} руб.</div>
               </div>
-              <button className="green-button">
+              <button className="green-button" onClick={onClickOrder}>
                 <span>
                   <img src="./img/arrow.svg" alt="" />
                 </span>

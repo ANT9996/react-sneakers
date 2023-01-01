@@ -7,7 +7,6 @@ import MyOrders from "./jsx/MyOrders";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import AppContext from "./context.js";
-import ContentLoader from "react-content-loader";
 import MyLoader from "./jsx/MyLoader";
 
 function App() {
@@ -82,7 +81,7 @@ function App() {
 
   return (
     <AppContext.Provider
-      value={{ items, cartItems, favouriteItems, orderItems, cardLoading }}
+      value={{ items, cartItems, favouriteItems, orderItems, cardLoading, setCartOpened, setCartItems }}
     >
       <div className="wrapper">
         <Header onClickCart={() => setCartOpened(true)} />
