@@ -24,13 +24,13 @@ function App() {
   const addToCart = (obj) => {
     axios.post(`https://63959cf790ac47c6806f0140.mockapi.io/cart`, obj);
     setCartItems((prev) => [...prev, obj]);
-    console.log(obj);
+    // console.log(obj);
   };
 
   const onAddToFavourite = (obj) => {
     axios.post(`https://63959cf790ac47c6806f0140.mockapi.io/favourites`, obj);
     setFavouriteItems((prev) => [...prev, obj]);
-    console.log(obj);
+    // console.log(obj);
   };
 
   const onRemoveItem = (id) => {

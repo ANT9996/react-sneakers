@@ -15,7 +15,7 @@ function Cart(props) {
         `https://63959cf790ac47c6806f0140.mockapi.io/orders`,
         {items: cartItems}
       );
-      console.log(cartItems);
+      // console.log(cartItems);
       setOrderId(data.id);
       setIsOredered(true);
       setCartItems([]);
