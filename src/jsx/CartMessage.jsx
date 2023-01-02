@@ -12,7 +12,7 @@ function CartMessage({name, description, img, func}) {
         <h5>{description}</h5>
         <button onClick={func}>
           <span>
-            <img src="./img/arrow.svg" alt="" />
+            <img src="img/arrow.svg" alt="" />
           </span>
           <span>Вернуться назад</span>
         </button>

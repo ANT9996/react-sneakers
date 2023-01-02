@@ -85,7 +85,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route
-              path="/react-sneakers/"
+              path="/"
               element={
                 <div className="main">
                   {/* <div className="slider">SliderField</div> */}
@@ -140,9 +140,9 @@ function App() {
               }
             />
 
-            <Route path="/react-sneakers/orders" element={<MyOrders />} />
+            <Route path="/orders" element={<MyOrders />} />
             <Route
-              path="/react-sneakers/favourites"
+              path="/favourites"
               element={
                 <MyFavourites
                 onAddToCart={(obj) => addToCart(obj)}

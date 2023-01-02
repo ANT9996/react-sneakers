@@ -8,11 +8,11 @@ function Header(props) {
   return (
     <header>
       <div className="headerLeft">
-        <Link to={"/react-sneakers/"}>
+        <Link to={""}>
           <img
             height={40}
             width={40}
-            src="./img/logo.png"
+            src="img/logo.png"
             className="logo"
             alt="logo"
           />
@@ -25,22 +25,22 @@ function Header(props) {
       </div>
       <ul className="headerRight">
         <li onClick={props.onClickCart}>
-          <img height="18" width="18" src="./img/cart.svg" alt="cart" />
+          <img height="18" width="18" src="img/cart.svg" alt="cart" />
           <span>{costVal} руб.</span>
         </li>
         <li>
-          <Link to={"/favourites"}>
+          <Link to={"favourites"}>
             <img
               height="18"
               width="18"
-              src="./img/favourites.svg"
+              src="img/favourites.svg"
               alt="favourites"
             />
           </Link>
         </li>
         <li>
-          <Link to={"/orders"}>
-            <img height="18" width="18" src="./img/profile.svg" alt="profile" />
+          <Link to={"orders"}>
+            <img height="18" width="18" src="img/profile.svg" alt="profile" />
           </Link>
         </li>
       </ul>

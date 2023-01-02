@@ -9,7 +9,7 @@ function MyFavourites(props) {
   return (
     <div className="my-purchases">
       <div className="back-h1">
-        <Link to={"/react-sneakers/"} className={"gerge"}>
+        <Link to={""} className={"gerge"}>
           <button></button>
         </Link>
         <h1>Мои избранные</h1>

@@ -15,7 +15,7 @@ function MyOrders() {
   return (
     <div className="my-purchases">
       <div className="back-h1">
-        <Link to={"/react-sneakers/"} className={"gerge"}>
+        <Link to={""} className={"gerge"}>
           <button></button>
         </Link>
         <h1>Мои покупки</h1>

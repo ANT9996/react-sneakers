@@ -92,7 +92,7 @@ function Cart(props) {
               </div>
               <button className="green-button" onClick={onClickOrder}>
                 <span>
-                  <img src="./img/arrow.svg" alt="" />
+                  <img src="img/arrow.svg" alt="" />
                 </span>
                 <span>Оформить заказ</span>
               </button>
