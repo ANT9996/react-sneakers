@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import DataEmpty from "./DataEmpty";
 function MyOrders() {
   const [orders, setOrders] = React.useState([]);
   React.useEffect(() => {
@@ -19,26 +20,32 @@ function MyOrders() {
         </Link>
         <h1>Мои покупки</h1>
       </div>
-      {orders.map((element) => (
-        <>
-          <br></br>
-          <h1>#{element.id}</h1>
-          <div className="row">
-            {element.items.map((item, i) => (
-              <div className="col">
-                <img src={item.img} alt="" />
-                <h4>{item.name}</h4>
-                <div className="col__price">
-                  <div>
-                    <p>Цена:</p>
-                    <h5>{item.price} руб.</h5>
+      {
+        orders.length > 0 ? (
+          orders.map((element) => (
+            <div key={element.id}>
+              <br></br>
+              <h1>#{element.id}</h1>
+              <div className="row">
+                {element.items.map((item, i) => (
+                  <div className="col" key={item.id}>
+                    <img src={item.img} alt="" />
+                    <h4>{item.name}</h4>
+                    <div className="col__price">
+                      <div>
+                        <p>Цена:</p>
+                        <h5>{item.price} руб.</h5>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </>
-      ))}
+            </div>
+          ))
+        ) : (
+          <DataEmpty name={'У вас нет заказов'} desc={'Даже пяти рублей нет? Оформите хотя бы один заказ.'}/>
+        )
+      }
     </div>
   );
 }

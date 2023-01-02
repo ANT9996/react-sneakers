@@ -2,6 +2,7 @@ import React from "react";
 import MainCol from "./MainCol";
 import { Link } from "react-router-dom";
 import AppContext from "../context";
+import DataEmpty from "./DataEmpty";
 
 function MyFavourites(props) {
   const { items, favouriteItems } = React.useContext(AppContext);
@@ -15,19 +16,25 @@ function MyFavourites(props) {
       </div>
       <div className="row">
         {
-          items.map((item) => (
-            favouriteItems.some((obj) => item.id === obj.parentId)) &&(
+          favouriteItems.length > 0 ? (
 
-              <MainCol
-                key={item.id}
-                {...item}
-                onAddToCart={(obj) => props.addToCart(obj)}
-                onAddToFavourite={(obj) => props.onAddToFavourite(obj)}
-                onRemFromFavourite={(id) => props.onRemFromFavourite(id)}
-                onRemoveItem={(id) => props.onRemoveItem(id)}
-              />
-            )
-        )}
+            items.map((item) => (
+              favouriteItems.some((obj) => item.id === obj.parentId)) &&(
+
+                <MainCol
+                  key={item.id}
+                  {...item}
+                  onAddToCart={(obj) => props.addToCart(obj)}
+                  onAddToFavourite={(obj) => props.onAddToFavourite(obj)}
+                  onRemFromFavourite={(id) => props.onRemFromFavourite(id)}
+                  onRemoveItem={(id) => props.onRemoveItem(id)}
+                />
+              )
+          )
+          ) : (
+            <DataEmpty name={'Закладок нет :('} desc={'Вы ничего не добавляли в закладки'}/>
+          )
+        }
       </div>
     </div>
   );
