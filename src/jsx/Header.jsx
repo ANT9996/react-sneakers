@@ -8,7 +8,7 @@ function Header(props) {
   return (
     <header>
       <div className="headerLeft">
-        <Link to={"/"}>
+        <Link to={"/react-sneakers/"}>
           <img
             height={40}
             width={40}
