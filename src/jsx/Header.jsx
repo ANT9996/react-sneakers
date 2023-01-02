@@ -8,7 +8,7 @@ function Header(props) {
   return (
     <header>
       <div className="headerLeft">
-        <Link to={""}>
+        <Link to={"/react-sneakers"}>
           <img
             height={40}
             width={40}
@@ -29,7 +29,7 @@ function Header(props) {
           <span>{costVal} руб.</span>
         </li>
         <li>
-          <Link to={"favourites"}>
+          <Link to={"/react-sneakers/favourites"}>
             <img
               height="18"
               width="18"
@@ -39,7 +39,7 @@ function Header(props) {
           </Link>
         </li>
         <li>
-          <Link to={"orders"}>
+          <Link to={"/react-sneakers/orders"}>
             <img height="18" width="18" src="img/profile.svg" alt="profile" />
           </Link>
         </li>
