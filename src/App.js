@@ -60,14 +60,10 @@ function App() {
       const favouriteData = await axios.get(
         "https://63959cf790ac47c6806f0140.mockapi.io/favourites"
       );
-      const orderData = await axios.get(
-        "https://63959cf790ac47c6806f0140.mockapi.io/orders"
-      );
 
       setItems(skeakersData.data);
       setCartItems(cartData.data);
       setFavouriteItems(favouriteData.data);
-      setOrderItems(orderData.data);
       setCardLoading(false);
     }
     fetchData();
@@ -81,7 +77,7 @@ function App() {
 
   return (
     <AppContext.Provider
-      value={{ items, cartItems, favouriteItems, orderItems, cardLoading, setCartOpened, setCartItems }}
+      value={{ items, cartItems, favouriteItems, cardLoading, setCartOpened, setCartItems }}
     >
       <div className="wrapper">
         <Header onClickCart={() => setCartOpened(true)} />

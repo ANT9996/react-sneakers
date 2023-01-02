@@ -2,14 +2,34 @@ import React from "react";
 import CartCard from "./CartCard";
 import AppContext from "../context";
 import CartMessage from "./CartMessage";
+import axios from "axios";
 
 function Cart(props) {
-  const { cartItems, setCartOpened, setCartItems } = React.useContext(AppContext);
+  const { cartItems, setCartOpened, setCartItems } =
+    React.useContext(AppContext);
   const [isOrdered, setIsOredered] = React.useState(false);
-  const onClickOrder = () => {
-    setIsOredered(true)
-    setCartItems([])
-  }
+  const [orderId, setOrderId] = React.useState(null);
+  const onClickOrder = async () => {
+    try {
+      const { data } = await axios.post(
+        `https://63959cf790ac47c6806f0140.mockapi.io/orders`,
+        {items: cartItems}
+      );
+      console.log(cartItems);
+      setOrderId(data.id);
+      setIsOredered(true);
+      setCartItems([]);
+      
+      for (let i = cartItems.length; i > 0; i--) {
+        // const item = cartItems[i];
+        // const {id} = cartItems.find(obj => obj.parentId === item.id);
+        await axios.delete(`https://63959cf790ac47c6806f0140.mockapi.io/cart/`+i)
+      }
+
+    } catch (err) {
+      alert('Не удалось отпрвить заказ')
+    }
+  };
   const costVal = cartItems.reduce(
     (sum, obj) => Number(obj.price) + Number(sum),
     0
@@ -29,7 +49,7 @@ function Cart(props) {
               <CartMessage
                 name={"Заказ оформлен!"}
                 description={
-                  "Ваш заказ #18 скоро будет передан курьерской доставке"
+                  `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                 }
                 img={"./img/ordered.png"}
                 func={() => setIsOredered(false)}
