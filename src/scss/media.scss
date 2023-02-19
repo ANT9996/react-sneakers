@@ -9,6 +9,12 @@
     }
 }
 
+    @media (max-width: 400px) {
+        .content {
+            padding: 0;
+        }
+    }
+
 @media (max-width: 390px) {
     .content {
         .h1-search {

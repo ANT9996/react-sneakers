@@ -8,12 +8,13 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import AppContext from "./context.js";
 import MyLoader from "./jsx/MyLoader";
+import searchIcon from './assets/img/search.svg'
 
 function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [cartItems, setCartItems] = React.useState([]);
   const [favouriteItems, setFavouriteItems] = React.useState([]);
-  const [orderItems, setOrderItems] = React.useState([]);
+  // const [orderItems, setOrderItems] = React.useState([]);
   const [items, setItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
   const [cardLoading, setCardLoading] = React.useState(true);
@@ -85,10 +86,9 @@ function App() {
         <div className="content">
           <Routes>
             <Route
-              path="/"
+              path="/react-sneakers"
               element={
                 <div className="main">
-                  {/* <div className="slider">SliderField</div> */}
                   <div className="h1-search">
                     <h1>
                       {searchValue ? (
@@ -98,7 +98,7 @@ function App() {
                       )}
                     </h1>
                     <div className="search">
-                      <img src="/img/search.svg" alt="" />
+                      <img src={searchIcon} alt="" />
                       <input
                         onChange={onChangeSearchInput}
                         value={searchValue}
@@ -140,9 +140,9 @@ function App() {
               }
             />
 
-            <Route path="/orders" element={<MyOrders />} />
+            <Route path="/react-sneakers/orders" element={<MyOrders />} />
             <Route
-              path="/favourites"
+              path="/react-sneakers/favourites"
               element={
                 <MyFavourites
                 onAddToCart={(obj) => addToCart(obj)}

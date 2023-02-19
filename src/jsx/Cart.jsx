@@ -3,11 +3,12 @@ import CartCard from "./CartCard";
 import AppContext from "../context";
 import CartMessage from "./CartMessage";
 import axios from "axios";
-
+import arrowIcon from '../assets/img/arrow.svg'
+import emptyCartIcon from '../assets/img/empty-cart.png'
 function Cart(props) {
   const { cartItems, setCartOpened, setCartItems } =
     React.useContext(AppContext);
-  const [isOrdered, setIsOredered] = React.useState(false);
+  const [isOrdered, setIsOrdered] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const onClickOrder = async () => {
     try {
@@ -17,7 +18,7 @@ function Cart(props) {
       );
       // console.log(cartItems);
       setOrderId(data.id);
-      setIsOredered(true);
+      setIsOrdered(true);
       setCartItems([]);
       
       for (let i = cartItems.length; i > 0; i--) {
@@ -27,7 +28,7 @@ function Cart(props) {
       }
 
     } catch (err) {
-      alert('Не удалось отпрвить заказ')
+      alert('Не удалось отправить заказ')
     }
   };
   const costVal = cartItems.reduce(
@@ -52,7 +53,7 @@ function Cart(props) {
                   `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                 }
                 img={"./img/ordered.png"}
-                func={() => setIsOredered(false)}
+                func={() => setIsOrdered(false)}
               />
             ) : (
               cartItems.length > 0 && (
@@ -73,7 +74,7 @@ function Cart(props) {
                 description={
                   "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
                 }
-                img={"./img/empty-cart.png"}
+                img={emptyCartIcon}
                 func={() => setCartOpened(false)}
               />
             )}
@@ -92,7 +93,7 @@ function Cart(props) {
               </div>
               <button className="green-button" onClick={onClickOrder}>
                 <span>
-                  <img src="img/arrow.svg" alt="" />
+                  <img src={arrowIcon} alt="" />
                 </span>
                 <span>Оформить заказ</span>
               </button>

@@ -1,9 +1,7 @@
 import React from "react";
-import AppContext from './../context';
-
+import arrowIcon from '../assets/img/arrow.svg'
 
 function CartMessage({name, description, img, func}) {
-    // const {setCartOpened} = React.useContext(AppContext)
   return (
     <div className="cartEmptyContainer">
       <div className="cartEmpty">
@@ -12,7 +10,7 @@ function CartMessage({name, description, img, func}) {
         <h5>{description}</h5>
         <button onClick={func}>
           <span>
-            <img src="img/arrow.svg" alt="" />
+            <img src={arrowIcon} alt="" />
           </span>
           <span>Вернуться назад</span>
         </button>

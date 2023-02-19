@@ -3,7 +3,7 @@ import AppContext from "./../context";
 
 function MainCol({
   id,
-  parentId,
+  // parentId,
   name,
   price,
   img,
@@ -14,34 +14,46 @@ function MainCol({
   isFavourite = false,
   isCarted = false,
 }) {
+  const [favDis, setFavDis] = React.useState(false)
+  const [cartDis, setCartDis] = React.useState(false)
   const [checked, setChecked] = React.useState(isCarted);
   const [favourite, setFavourite] = React.useState(isFavourite);
   const { cartItems, favouriteItems } = React.useContext(AppContext);
   const obj = { id, parentId: id, name, price, img }
-  const onClickCart = () => {
+  const onClickCart = async () => {
+    setCartDis(true)
     if (checked === false) {
-      onAddToCart(obj);
+      await onAddToCart(obj);
     } else {
-      onRemoveItem(id);
+      await onRemoveItem(id);
     }
     setChecked(!checked);
+    setTimeout(() => {
+      setCartDis(false)
+    }, 1000);
   };
 
-  const onClickFavourite = () => {
+  const onClickFavourite = async () => {
+    setFavDis(true)
     if (favourite === false) {
-      onAddToFavourite(obj);
+      await onAddToFavourite(obj);
     } else {
-      onRemFromFavourite(id);
+      await onRemFromFavourite(id);
     }
     setFavourite(!favourite);
+    setTimeout(() => {
+      setFavDis(false)
+    }, 1000);
   };
 
   React.useEffect(() => {
     setChecked(cartItems.some((item) => item.parentId === id));
+    // eslint-disable-next-line
   }, [cartItems]);
 
   React.useEffect(() => {
     setFavourite(favouriteItems.some((item) => item.parentId === id));
+    // eslint-disable-next-line
   }, [favouriteItems]);
 
 
@@ -56,12 +68,14 @@ function MainCol({
         </div>
         <div className="buttons">
           <button
+            disabled={favDis}
             className={`favourite-button ${
               favourite ? "buttonFavouriteAdded" : ""
             }`}
             onClick={onClickFavourite}
           ></button>
           <button
+            disabled={cartDis}
             className={`addCart ${checked ? "buttonCartAdded" : ""}`}
             onClick={onClickCart}
           ></button>
